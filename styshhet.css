@@ -1,0 +1,74 @@
+* {
+	margin: 0em;
+	padding: 0em;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  transition: all 1s ease;
+}
+
+body {
+  font-family: sans-serif;
+	background-image: url('birdbox.jpg');
+ 	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size:cover;
+	font-family: sans-serif;
+	color: black;
+  margin: 0;
+}
+
+
+}
+
+h1 { font-size: 240%; }
+h2 { font-size: 150%; }
+h3 { font-size: 125%; }
+
+h1, h2, h3 {
+  color: black;
+}
+
+
+
+nav li {
+	padding: 0.375em 0.5em 0.375em 1em;
+  text-decoration: none;
+  font-size: 1.56em;
+  color: #818181;
+  display: block;
+}
+
+header{
+	height: 100%;
+  width: 25%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #bec5d3;
+  overflow-x: hidden;
+  padding-top: 1.25em;
+}
+
+article, footer {
+	padding: 1em;
+	max-width: 50%;
+	margin: 0em auto;
+}
+video {
+	width:120%;
+
+
+
+
+}
+
+
+
+section {
+	padding: 2em;
+	margin: 1em 0em 0em 1em;
+}
