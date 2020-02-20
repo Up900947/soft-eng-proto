@@ -20,9 +20,6 @@ body {
   margin: 0;
 }
 
-
-}
-
 h1 { font-size: 240%; }
 h2 { font-size: 150%; }
 h3 { font-size: 125%; }
@@ -58,15 +55,26 @@ article, footer {
 	max-width: 50%;
 	margin: 0em auto;
 }
-video {
-	width:120%;
 
-
-
-
+/* COURSES style */
+#list-courses {
+	display: flex;
+	flex-direction: row;
 }
 
+.courses {
+		list-style: none;
+		padding-top: 2em;
+		padding-bottom: 2em;
+		padding-left: 4em;
+		padding-right: 4em;
+		border: solid;
+		margin: 0.5em;
+}
 
+video {
+	width:120%;
+}
 
 section {
 	padding: 2em;
