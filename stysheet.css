@@ -8,6 +8,11 @@
   transition: all 1s ease;
 }
 
+img {
+	height: 10em;
+	width: 20em;
+}
+
 body {
   font-family: sans-serif;
 	background-image: url('birdbox.jpg');
@@ -20,7 +25,6 @@ body {
   margin: 0;
 }
 
-h1 { font-size: 240%; }
 h2 { font-size: 150%; }
 h3 { font-size: 125%; }
 
