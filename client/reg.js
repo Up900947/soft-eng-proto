@@ -2,34 +2,55 @@
 const el = {};
 
 async function sendUser() {
-  //create payload from userdetails
-  const payload = {
-    username: //username input value
-    password: //password input value
-    course: //course input value
-  }
+    //create payload from userdetails
+    const payload = {
+      username: el.username.value,
+      email: el.email.value,
+      password: el.psw.value,
+      course: el.course.value,
+     };
+     console.log('Payload', payload);
 
-  //send data to the server
-  const respone = await fetch ('users', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload);
-  })
+    //send data to the server
+    const response = await fetch('users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
 
-  if (response.ok) {
-    //confirmation message
-} else {
-  console.log('failed to send message', response);
+    console.log(response);
+
+    if (response.ok) {
+        //confirmation message
+        console.log('user details sent');
+    } else {
+        console.log('failed to send message', response);
+    }
+}
+
+function checkPasswords() {
+    if (el.psw.value === el.pswRepeat.value) {
+        sendUser();
+    } else {
+        console.log('Passwords does not match');
+        // el.psw.placeholder = "Passwords does not match";
+        // el.pswRepeat.placeholder = "Passwords does not match";
+    }
 }
 
 //Set up an array of elements found in the DOM
 function prepareHandles() {
-  //add button for registration
+  el.username = document.querySelector("#username");
+  el.email = document.querySelector("#email");
+  el.psw = document.querySelector("#psw");
+  el.pswRepeat = document.querySelector("#pswRepeat");
+  el.course = document.querySelector("#course option:checked");
+  el.submit = document.querySelector("#signupbtn");
 }
 
 //Connect listeners to functions
-function addEventListener() {
-  //button for reg - click - sendUser
+function addEventListeners() {
+  el.submit.addEventListener('click', checkPasswords);
 }
 
 function pageLoaded() {
