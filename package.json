@@ -26,6 +26,6 @@
   "homepage": "https://github.com/Up900947/soft-eng-proto#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "postgres": "^1.0.2"
+    "pg": "^7.18.2"
   }
 }
