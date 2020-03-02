@@ -7,6 +7,8 @@ const app = express();
 
 app.use(express.static('client'));
 
+let users = [];
+
 //get users from the database ua
 function getUsers(req, res) {
   console.log("get users");
@@ -15,7 +17,6 @@ function getUsers(req, res) {
 
 //add new user account in database ua and return the new user
 function postUser(req, res) {
-  console.log("post users");
   const users = addUser(req.body);
   res.json(users);
   // const user = await ua.addUser(req.body.user);
@@ -27,7 +28,7 @@ function addUser(user) {
     id: uuid(),
     user,
   };
-  users = [users, ...users.slice(0, 9)];
+  users = [newUser, ...users.slice(0, 9)];
   return users;
 }
 

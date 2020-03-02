@@ -22,7 +22,9 @@ async function sendUser() {
 
     if (response.ok) {
         //confirmation message
-        console.log('user details sent');
+        if (confirm("Register successful")) {
+            window.location.href = '/index.html';
+        }
     } else {
         console.log('failed to send message', response);
     }
