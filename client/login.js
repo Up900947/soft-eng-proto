@@ -7,7 +7,7 @@ async function loadUsers() {
    let users;
    if (response.ok) {
      users = await response.json();
-     checkUser(users);
+     checkUser(users)
    } else {
      users = [{ msg: 'failed to load users' }];
    }
@@ -16,20 +16,26 @@ async function loadUsers() {
 //check if the user is registered (in the list)
 function checkUser(users) {
   const username = el.username.value;
+  const found = false;
 
   for (const user of users) {
     if (user.username === username) {
+      console.log(user.username);
       checkPassword(user);
-    } else {
-      console.log('User is not registered');
-      confirm("User is not registered");
+      found = true;
     }
+  }
+
+  if (!found) {
+    //shows when user is not in the list
+    console.log('User is not registered');
+    confirm("User is not registered");
   }
 }
 
 //check if the password is correct
 function checkPassword(user) {
-    const password = el.password.value;
+    const password = el.psw.value;
 
     if (user.password === password) {
       //redirect to homepage
@@ -49,7 +55,7 @@ function prepareHandles() {
 
 //Connect listeners to functions
 function addEventListeners() {
-  el.login.addEventListener('click', loadUsers());
+  el.login.addEventListener('click', loadUsers);
 }
 
 function pageLoaded() {
