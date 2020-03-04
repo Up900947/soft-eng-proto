@@ -1,6 +1,7 @@
 'use strict';
 const uuid = require('uuid-random');
 const express = require('express');
+const fs = require('fs');
 const app = express();
 
 app.use(express.static('client', { extensions: ['html'] }));
