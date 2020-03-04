@@ -84,6 +84,10 @@ input {
 	float: right;
 }
 
+form {
+  float: right;
+}
+
 section {
 	padding: 2em;
 	margin: 1em 0em 0em 1em;

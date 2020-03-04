@@ -1,8 +1,16 @@
 'use strict';
 const uuid = require('uuid-random');
 const express = require('express');
+const multer = require('multer');
 const fs = require('fs');
 const app = express();
+
+const uploader = multer({
+  dest: 'upload',
+  limits: { // for security
+    files: 1
+  },
+});
 
 app.use(express.static('client', { extensions: ['html'] }));
 
@@ -14,7 +22,7 @@ let users = [
 ];
 
 //send the users list
-function getUsers(req, res) {
+async function getUsers(req, res) {
   res.json(users);
 }
 
@@ -33,15 +41,20 @@ function addUser(user) {
   return users;
 }
 
-//wrap async function for express.js error handling
-// function asyncWrap(f) {
-//   return (req, res, next) => {
-//     Promise.resolve(f(req, res, next))
-//       .catch((e) => next(e || new Error()));
-//   };
+// function uploadFile(req, res) {
+//   if (function(err) {
+//       return res.end("Something went wrong!");
+//   }
+//   return res.end("File uploaded sucessfully!.");
 // }
+
+function getFile(req, res) {
+  res.sendFile(__dirname + "/files.html");
+}
 
 app.get('/users', getUsers);
 app.post('/users', express.json(), postUser);
+// app.get('/upload', uploadFile);
+app.get('/upload', getFile);
 
 app.listen(8080);

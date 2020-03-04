@@ -27,9 +27,10 @@
     <input type = "button" id = "search-button" value = "Search">
   </article>
 
-  <article id = "upload">
-    <input type = "button" value = "Upload">
-  </article>
+  <form method = "post" enctype="multipart/form-data" action="/">
+    <input type = "file" value = "filename">
+    <input type = "submit" value = "Upload">
+  </form>
 
   <article id = "sort-by">
     <input type = "button" value = "Sort By">
