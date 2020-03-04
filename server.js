@@ -1,17 +1,11 @@
 'use strict';
 const uuid = require('uuid-random');
 const express = require('express');
-const multer = require('multer');
-const fs = require('fs');
+const upload = require('express-fileupload');
+
 const app = express();
 
-const uploader = multer({
-  dest: 'upload',
-  limits: { // for security
-    files: 1
-  },
-});
-
+app.use(upload());
 app.use(express.static('client', { extensions: ['html'] }));
 
 //dummy accounts
@@ -41,20 +35,38 @@ function addUser(user) {
   return users;
 }
 
-// function uploadFile(req, res) {
-//   if (function(err) {
-//       return res.end("Something went wrong!");
-//   }
-//   return res.end("File uploaded sucessfully!.");
-// }
+function uploadFile (req,res) {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
 
-function getFile(req, res) {
-  res.sendFile(__dirname + "/files.html");
+  let file = req.files.file;
+
+  file.mv(__dirname + '/upload/', function(err) {
+    if (err) {
+      return res.status(500).send(err);
+    }
+   res.send('File uploaded');
+ });
 }
+
+// app.post("/upload", function(req,res) {
+//   if (!req.files || Object.keys(req.files).length === 0) {
+//     return res.status(400).send('No files were uploaded.');
+//   }
+//
+//   let file = req.files.file;
+//
+//   file.mv(__dirname + '/upload/sample.txt', function(err) {
+//     if (err) {
+//       return res.status(500).send(err);
+//     }
+//    res.send('File uploaded');
+//  });
+// });
 
 app.get('/users', getUsers);
 app.post('/users', express.json(), postUser);
-// app.get('/upload', uploadFile);
-app.get('/upload', getFile);
+app.post('/upload', uploadFile);
 
 app.listen(8080);

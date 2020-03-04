@@ -1,11 +1,25 @@
 'use strict';
+const el = {};
 
-function uploadFile() {
+async function uploadFile() {
+  const payload = new FormData();
+  payload.append(el.file.value);
 
+  const response = await fetch('upload' {
+    method: 'POST',
+    body: payload,
+  });
+
+  if (response.ok) {
+
+  } else {
+    console.log('failed to send message', response);
+  }
 }
 
 //Set up an array of elements found in the DOM
 function prepareHandles() {
+  el.file = document.querySelector("#file");
   el.upload = document.querySelector("#upload");
 }
 
