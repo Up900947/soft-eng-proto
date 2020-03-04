@@ -35,8 +35,7 @@ function checkPasswords() {
         sendUser();
     } else {
         console.log('Passwords does not match');
-        // el.psw.placeholder = "Passwords does not match";
-        // el.pswRepeat.placeholder = "Passwords does not match";
+        confirm("Passwords does not match");
     }
 }
 

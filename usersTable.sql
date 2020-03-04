@@ -4,7 +4,8 @@ DROP TABLE IF EXISTS usersTable;
 
 CREATE TABLE IF NOT EXISTS usersTable (
     id   uuid      DEFAULT uuid_generate_v4() PRIMARY KEY,
-    username  text
-    password varchar
+    username  text,
+    email text,
+    password varchar,
     course text
 );

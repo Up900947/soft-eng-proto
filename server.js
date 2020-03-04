@@ -1,26 +1,26 @@
 'use strict';
 const uuid = require('uuid-random');
-
 const express = require('express');
 const app = express();
-// const ua = require('./userAccount');
 
-app.use(express.static('client'));
+app.use(express.static('client', { extensions: ['html'] }));
 
-let users = [];
+//dummy accounts
+let users = [
+  { id: 'xnshfdsafasd', username: 'up123456', email: 'up123456@myport.ac.uk', password: '123', course: 'Data Science and Analytics' },
+  { id: 'dskjdshkjhsd', username: 'up111111', email: 'up111111@myport.ac.uk', password: '111', course: 'Mechanical Engineering' },
+  { id: 'vcxbxcvfggzv', username: 'up121212', email: 'up121212@myport.ac.uk', password: '1212', course: 'Computer Science' },
+];
 
-//get users from the database ua
+//send the users list
 function getUsers(req, res) {
-  console.log("get users");
-  // res.json(await ua.listUsers());
+  res.json(users);
 }
 
-//add new user account in database ua and return the new user
-function postUser(req, res) {
+//add new user account in the server lists
+async function postUser(req, res) {
   const users = addUser(req.body);
   res.json(users);
-  // const user = await ua.addUser(req.body.user);
-  // res.json(user);
 }
 
 function addUser(user) {
@@ -32,7 +32,7 @@ function addUser(user) {
   return users;
 }
 
-// wrap async function for express.js error handling
+//wrap async function for express.js error handling
 // function asyncWrap(f) {
 //   return (req, res, next) => {
 //     Promise.resolve(f(req, res, next))
