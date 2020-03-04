@@ -1,52 +1,55 @@
 'use strict';
-
-'use strict';
 const el = {};
 
-async function sendUser() {
-  //create payload from userdetails
-  const payload = {
-    username: //username input value
-    password: //password input value
-  }
-
-  //send data to the server
-  const respone = await fetch ('users', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload);
-  })
-
-  if (response.ok) {
-    //confirmation message
-} else {
-  console.log('failed to send message', response);
+//get the user list from the server
+async function loadUsers() {
+   const response = await fetch('users');
+   let users;
+   if (response.ok) {
+     users = await response.json();
+     checkUser(users);
+   } else {
+     users = [{ msg: 'failed to load users' }];
+   }
 }
 
-  const response = await fetch('messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
+//check if the user is registered (in the list)
+function checkUser(users) {
+  const username = el.username.value;
 
-  if (response.ok) {
-    el.message.value = '';
-    const updatedMessages = await response.json();
-    removeContentFrom(el.messagelist);
-    showMessages(updatedMessages, el.messagelist);
-  } else {
-    console.log('failed to send message', response);
+  for (const user of users) {
+    if (user.username === username) {
+      checkPassword(user);
+    } else {
+      console.log('User is not registered');
+      confirm("User is not registered");
+    }
   }
+}
+
+//check if the password is correct
+function checkPassword(user) {
+    const password = el.password.value;
+
+    if (user.password === password) {
+      //redirect to homepage
+      window.location.href = '/index.html';
+    } else {
+      console.log('Password incorrect');
+      confirm("Password incorrect");
+    }
 }
 
 //Set up an array of elements found in the DOM
 function prepareHandles() {
-  //add button for login
+  el.username = document.querySelector("#username");
+  el.psw = document.querySelector("#psw")
+  el.login = document.querySelector("#login")
 }
 
 //Connect listeners to functions
-function addEventListener() {
-  //button for login - click - checkUser
+function addEventListeners() {
+  el.login.addEventListener('click', loadUsers());
 }
 
 function pageLoaded() {
