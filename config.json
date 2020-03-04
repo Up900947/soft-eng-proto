@@ -1,0 +1,4 @@
+{
+  "database": "usersTable",
+  "statement_timeout": 5000
+}

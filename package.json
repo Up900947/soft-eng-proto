@@ -1,0 +1,32 @@
+{
+  "name": "porthub",
+  "version": "1.0.0",
+  "description": "software engineering coursework",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Up900947/soft-eng-proto.git"
+  },
+  "keywords": [
+    "web",
+    "app",
+    "js",
+    "html",
+    "css"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Up900947/soft-eng-proto/issues"
+  },
+  "homepage": "https://github.com/Up900947/soft-eng-proto#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^7.18.2",
+    "uuid-random": "^1.3.0"
+  }
+}
