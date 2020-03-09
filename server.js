@@ -1,11 +1,24 @@
 'use strict';
 const uuid = require('uuid-random');
 const express = require('express');
-const upload = require('express-fileupload');
+const multer = require('multer');
+const fs = require('fs');
+const util = require('util');
+const path = require('path');
 
 const app = express();
 
-app.use(upload());
+const uploader = multer({
+  dest: 'upload',
+  limits: { // for security
+    fields: 10,
+    fileSize: 1024 * 1024 * 20, // 20MB
+    files: 1,
+  },
+});
+
+fs.renameAsync = fs.renameAsync || util.promisify(fs.rename);
+
 app.use(express.static('client', { extensions: ['html'] }));
 
 //dummy accounts
@@ -35,38 +48,25 @@ function addUser(user) {
   return users;
 }
 
-function uploadFile (req,res) {
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).send('No files were uploaded.');
+async function uploadFile(req, res) {
+  const file = req.body;
+  let newFilename;
+  if (file) {
+    const fileExt = file.mimetype.split('/')[1] || 'pdf';
+    newFilename = file.filename + '.' + fileExt;
+    await fs.renameAsync(file.path, path.join('client', 'lectureNotes', newFilename));
   }
-
-  let file = req.files.file;
-
-  file.mv(__dirname + '/upload/', function(err) {
-    if (err) {
-      return res.status(500).send(err);
-    }
-   res.send('File uploaded');
- });
 }
 
-// app.post("/upload", function(req,res) {
-//   if (!req.files || Object.keys(req.files).length === 0) {
-//     return res.status(400).send('No files were uploaded.');
-//   }
-//
-//   let file = req.files.file;
-//
-//   file.mv(__dirname + '/upload/sample.txt', function(err) {
-//     if (err) {
-//       return res.status(500).send(err);
-//     }
-//    res.send('File uploaded');
-//  });
-// });
+function asyncWrap(f) {
+  return (req, res, next) => {
+    Promise.resolve(f(req, res, next))
+      .catch((e) => next(e || new Error()));
+  };
+}
 
 app.get('/users', getUsers);
 app.post('/users', express.json(), postUser);
-app.post('/upload', uploadFile);
+app.post('/upload', uploader.single('file'), express.json(), asyncWrap(uploadFile));
 
 app.listen(8080);
