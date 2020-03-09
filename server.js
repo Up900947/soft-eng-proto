@@ -49,13 +49,17 @@ function addUser(user) {
 }
 
 async function uploadFile(req, res) {
-  const file = req.body;
+  const file = req.file;
+  console.log(file);
+
   let newFilename;
   if (file) {
     const fileExt = file.mimetype.split('/')[1] || 'pdf';
     newFilename = file.filename + '.' + fileExt;
     await fs.renameAsync(file.path, path.join('client', 'lectureNotes', newFilename));
   }
+
+  return newFilename;
 }
 
 function asyncWrap(f) {

@@ -14,6 +14,7 @@ async function uploadFile() {
 
   if (response.ok) {
      const file = await response.json();
+     console.log("after server" + file);
      el.content.append(file);
   } else {
     console.log('failed to send message', response);
