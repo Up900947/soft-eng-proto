@@ -47,20 +47,27 @@ function addUser(user) {
   return users;
 }
 
+//gets the file from the request
 async function uploadFile(req, res) {
   const file = req.file;
-  console.log({file});
 
-  let newFilename;
-  if (file) {
-    const fileExt = file.mimetype.split('/')[1] || 'pdf';
-    newFilename = file.filename + '.' + fileExt;
-    await fs.renameAsync(file.path, path.join('client', 'lectureNotes', newFilename));
-  }
+  // let newFilename;
+  // //move file to the client side
+  // if (file) {
+  //   const fileExt = file.mimetype.split('/')[1] || 'pdf';
+  //   newFilename = file.filename + '.' + fileExt;
+  //   await fs.renameAsync(file.path, path.join('client', 'lectureNotes', newFilename));
+  // }
 
-  res.json({newFilename});
+  res.json({file});
 }
 
+async function getFiles(req, res) {
+  const files = fs.readdirSync('/upload');
+  res.json(files);
+}
+
+//wrapper for error catching
 function asyncWrap(f) {
   return (req, res, next) => {
     Promise.resolve(f(req, res, next))
@@ -70,6 +77,7 @@ function asyncWrap(f) {
 
 app.get('/users', getUsers);
 app.post('/users', express.json(), postUser);
-app.post('/upload', uploader.single('file'), express.json(), asyncWrap(uploadFile));
+app.post('/files', uploader.single('file'), express.json(), asyncWrap(uploadFile));
+app.get('/files', getFiles);
 
 app.listen(8080);

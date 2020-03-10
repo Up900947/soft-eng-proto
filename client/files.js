@@ -1,22 +1,46 @@
 'use strict';
 const el = {};
 
+async function loadFiles() {
+   const response = await fetch('files');
+   let files;
+   if (response.ok) {
+     files = await response.json();
+     showFiles(files);
+   } else {
+     files = [{ msg: 'failed to load files' }];
+   }
+}
+
+function showFiles(files) {
+  for (const file of files) {
+    addLink(file);
+  }
+}
+
+function addLink(file) {
+  const li = document.createElement('li');
+  li.addClassList('files');
+  const a = document.createElement('a');
+
+  a.textContent = file.filename;
+  a.href = 'lectureNotes/' + file.filename;
+  li.append(a);
+  el.content.append(li);
+}
+
 async function uploadFile() {
   const payload = new FormData();
   payload.append('file', el.file.value);
 
-  console.log(payload);
-
-  const response = await fetch('upload', {
+  const response = await fetch('files', {
     method: 'POST',
     body: payload,
   });
 
   if (response.ok) {
      const file = await response.json();
-
-     //create an object that links to the file in the lectureNotes
-     el.content.append(file);
+     addLink(file)
   } else {
     console.log('failed to send message', response);
   }
@@ -37,6 +61,7 @@ function addEventListeners() {
 function pageLoaded() {
   prepareHandles();
   addEventListeners();
+  loadFiles();
 }
 
 window.addEventListener('load', pageLoaded);
