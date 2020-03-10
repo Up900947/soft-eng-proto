@@ -10,9 +10,8 @@ const app = express();
 
 const uploader = multer({
   dest: 'upload',
-  limits: { // for security
+  limits: {
     fields: 10,
-    fileSize: 1024 * 1024 * 20, // 20MB
     files: 1,
   },
 });
@@ -50,7 +49,7 @@ function addUser(user) {
 
 async function uploadFile(req, res) {
   const file = req.file;
-  console.log(file);
+  console.log({file});
 
   let newFilename;
   if (file) {
@@ -59,7 +58,7 @@ async function uploadFile(req, res) {
     await fs.renameAsync(file.path, path.join('client', 'lectureNotes', newFilename));
   }
 
-  return newFilename;
+  res.json({newFilename});
 }
 
 function asyncWrap(f) {
