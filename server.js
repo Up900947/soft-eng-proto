@@ -50,11 +50,20 @@ function addUser(user) {
 //gets the file from the request and store it to server
 async function uploadFile(req, res) {
   const file = req.file;
-  res.json(file);
+
+  let newFilename;
+  //rename file with file extension
+  if (file) {
+    const fileExt = file.mimetype.split('/')[1] || 'pdf';
+    newFilename = file.filename + '.' + fileExt;
+    await fs.renameAsync(file.path, path.join('upload', newFilename));
+  }
+
+  res.json(newFilename);
 }
 
 async function getFiles(req, res) {
-  const files = fs.readdirSync('/upload');
+  const files = fs.readFileSync('/upload');
   res.json(files);
 }
 

@@ -19,14 +19,12 @@ function showFiles(files) {
 }
 
 function addLink(file) {
-  console.log(file);
   const li = document.createElement('li');
   li.classList.add('files');
   const a = document.createElement('a');
 
-  console.log(file.filename);
-  a.text = file.filename;
-  a.href = 'upload/' + file.filename + '.pdf';
+  a.text = file;
+  a.href = 'upload/' + file;
   li.append(a);
   el.content.append(li);
 }
@@ -34,7 +32,7 @@ function addLink(file) {
 async function uploadFile() {
   const payload = new FormData();
   if (el.file.files.length) {
-  payload.append('file', el.file.files[0]);
+    payload.append('file', el.file.files[0]);
   }
 
   const response = await fetch('files', {
