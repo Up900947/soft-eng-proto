@@ -52,19 +52,14 @@ async function uploadFile(req, res) {
   const file = req.file;
 
   let newFilename;
-  //rename file with file extension
+  //move file to the client side
   if (file) {
     const fileExt = file.mimetype.split('/')[1] || 'pdf';
     newFilename = file.filename + '.' + fileExt;
-    await fs.renameAsync(file.path, path.join('upload', newFilename));
+    await fs.renameAsync(file.path, path.join('client', 'lectureNotes', newFilename));
   }
 
   res.json(newFilename);
-}
-
-async function getFiles(req, res) {
-  const files = fs.readFileSync('/upload');
-  res.json(files);
 }
 
 //wrapper for error catching

@@ -24,7 +24,9 @@ function addLink(file) {
   const a = document.createElement('a');
 
   a.text = file;
-  a.href = 'upload/' + file;
+  a.href = 'lectureNotes/' + file;
+
+  a.download = file;
   li.append(a);
   el.content.append(li);
 }
