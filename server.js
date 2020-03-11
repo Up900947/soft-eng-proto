@@ -47,19 +47,10 @@ function addUser(user) {
   return users;
 }
 
-//gets the file from the request
+//gets the file from the request and store it to server
 async function uploadFile(req, res) {
   const file = req.file;
-
-  // let newFilename;
-  // //move file to the client side
-  // if (file) {
-  //   const fileExt = file.mimetype.split('/')[1] || 'pdf';
-  //   newFilename = file.filename + '.' + fileExt;
-  //   await fs.renameAsync(file.path, path.join('client', 'lectureNotes', newFilename));
-  // }
-
-  res.json({file});
+  res.json(file);
 }
 
 async function getFiles(req, res) {
@@ -78,6 +69,5 @@ function asyncWrap(f) {
 app.get('/users', getUsers);
 app.post('/users', express.json(), postUser);
 app.post('/files', uploader.single('file'), express.json(), asyncWrap(uploadFile));
-app.get('/files', getFiles);
 
 app.listen(8080);

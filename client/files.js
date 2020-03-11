@@ -19,19 +19,23 @@ function showFiles(files) {
 }
 
 function addLink(file) {
+  console.log(file);
   const li = document.createElement('li');
-  li.addClassList('files');
+  li.classList.add('files');
   const a = document.createElement('a');
 
-  a.textContent = file.filename;
-  a.href = 'lectureNotes/' + file.filename;
+  console.log(file.filename);
+  a.text = file.filename;
+  a.href = 'upload/' + file.filename + '.pdf';
   li.append(a);
   el.content.append(li);
 }
 
 async function uploadFile() {
   const payload = new FormData();
-  payload.append('file', el.file.value);
+  if (el.file.files.length) {
+  payload.append('file', el.file.files[0]);
+  }
 
   const response = await fetch('files', {
     method: 'POST',
@@ -40,9 +44,9 @@ async function uploadFile() {
 
   if (response.ok) {
      const file = await response.json();
-     addLink(file)
+     addLink(file);
   } else {
-    console.log('failed to send message', response);
+    console.log('failed to send file', response);
   }
 }
 
