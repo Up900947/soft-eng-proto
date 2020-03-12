@@ -1,37 +1,51 @@
-<!DOCTYPE html>
-<html lang = 'en'>
-<meta charset="utf-8">
-<link rel="stylesheet" media="screen and (min-width: 600px)" href="stysheet.css">
-<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)"href="phonestysheet.css">
+<html>
+  <head lang="en" dir="ltr">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="courses.css" type="text/css" rel="stylesheet">
+      <script src="register.js"></script>
+    <title>Registration page </title>
+  </head>
 
-<title>PortHub</title>
-<header>
-  <img src="portHubLogo.png" alt="logo">
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a>
-      <li><a href="courses.html">Courses</a>
-      <li><a href="video.html">Account</a>
-      <li><a href="https://myport.ac.uk/">Moodle</a>
-    </ul>
-  </nav>
-</header>
 
-<main>
-  <article id = "search-bar">
-    <input type = "text" id = "search-text">
-    <input type = "button" id = "search-button" value = "Search">
-  </article>
-  <article id = "sort-by">
-    <input type = "button" value = "Sort By">
-  </article>
+  <header>
+    <div class="container">
+
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="courses.html">Courses</a>
+  <a href="video.html">Account</a>
+  <a href="https://myport.ac.uk/">Moodle</a>
+  </div>
+
+  <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+  </script>
+
+
+
+
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; MENU</span>
+
   <article id = "courses">
     <h1> Courses </h1>
-    <ul id = "list-courses">
-      <li class = "courses"><a href = "buisnesss-information-systems.html">Buisness Information Systems</a></li>
-      <li class = "courses"><a href = "computer-science.html">Computer Science</a></li>
-      <li class = "courses"><a href = "computing.html">Computing</a></li>
-      <li class = "courses"><a href = "cyber.html">Cyber Security</a></li>
-    </ul>
+    <hr>
+    <div class="btn-group">
+  <button><a href = "school-of-science.html">School of Science</a></button>
+  <button><a href = "school-of-engineering.html">School of Engineering</a></button>
+  <button><a href = "school-of-art.html">School of Art</a></button>
+  <button><a href = "school-of-computing.html">School of Computing</a></button>
+</div>
+
+
   </article>
-</main>
