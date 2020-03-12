@@ -27,6 +27,9 @@ let users = [
   { id: 'vcxbxcvfggzv', username: 'up121212', email: 'up121212@myport.ac.uk', password: '1212', course: 'Computer Science' },
 ];
 
+//array for all files stored
+let fileList = [];
+
 //send the users list
 async function getUsers(req, res) {
   res.json(users);
@@ -67,9 +70,12 @@ async function getFiles(req, res) {
   const directoryPath = path.join(_dirname, 'client', 'lectureNotes');
   fs.readdir(directoryPath, function (err, files) {
     if (err) {
-      console.log('Unable to scan directory' + err);
+      fileList = ['Unable to scan directory' + err];
     }
-    res.json(files);
+    files.forEach(function (file) {
+      fileList = [file, ...fileList];
+    });
+    res.json(fileList);
   });
 }
 
