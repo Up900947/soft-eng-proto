@@ -54,7 +54,6 @@ function addUser(user) {
 async function uploadFile(req, res) {
   const file = req.file;
   const filename = req.body.filename;
-  console.log(filename);
 
   let newFilename;
   //move file to the client side
