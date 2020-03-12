@@ -39,7 +39,7 @@ function checkPassword(user) {
 
     if (user.password === password) {
       //redirect to homepage
-      window.location.href = '/index.html';
+      window.location.href = '/courses.html';
     } else {
       console.log('Password incorrect');
       confirm("Password incorrect");
