@@ -1,7 +1,22 @@
 'use strict';
 const uuid = require('uuid-random');
 const express = require('express');
+const multer = require('multer');
+const fs = require('fs');
+const util = require('util');
+const path = require('path');
+
 const app = express();
+
+const uploader = multer({
+  dest: 'upload',
+  limits: {
+    fields: 10,
+    files: 1,
+  },
+});
+
+fs.renameAsync = fs.renameAsync || util.promisify(fs.rename);
 
 app.use(express.static('client', { extensions: ['html'] }));
 
@@ -12,8 +27,11 @@ let users = [
   { id: 'vcxbxcvfggzv', username: 'up121212', email: 'up121212@myport.ac.uk', password: '1212', course: 'Computer Science' },
 ];
 
+//array for all files stored
+let fileList = [];
+
 //send the users list
-function getUsers(req, res) {
+async function getUsers(req, res) {
   res.json(users);
 }
 
@@ -32,15 +50,46 @@ function addUser(user) {
   return users;
 }
 
-//wrap async function for express.js error handling
-// function asyncWrap(f) {
-//   return (req, res, next) => {
-//     Promise.resolve(f(req, res, next))
-//       .catch((e) => next(e || new Error()));
-//   };
-// }
+//gets the file from the request and store it to server
+async function uploadFile(req, res) {
+  const file = req.file;
+
+  let newFilename;
+  //move file to the client side
+  if (file) {
+    const fileExt = file.mimetype.split('/')[1] || 'pdf';
+    newFilename = file.filename + '.' + fileExt;
+    await fs.renameAsync(file.path, path.join('client', 'lectureNotes', newFilename));
+  }
+
+  res.json(newFilename);
+}
+
+//get all files from the client side lecture notes folder
+async function getFiles(req, res) {
+  const directoryPath = path.join(_dirname, 'client', 'lectureNotes');
+  fs.readdir(directoryPath, function (err, files) {
+    if (err) {
+      fileList = ['Unable to scan directory' + err];
+    }
+    files.forEach(function (file) {
+      fileList = [file, ...fileList];
+    });
+    res.json(fileList);
+  });
+}
+
+//wrapper for error catching
+function asyncWrap(f) {
+  return (req, res, next) => {
+    Promise.resolve(f(req, res, next))
+      .catch((e) => next(e || new Error()));
+  };
+}
 
 app.get('/users', getUsers);
 app.post('/users', express.json(), postUser);
+app.post('/files', uploader.single('file'), express.json(), asyncWrap(uploadFile));
+app.get('/files', asyncWrap(getFiles));
 
 app.listen(8080);
