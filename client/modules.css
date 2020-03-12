@@ -132,7 +132,6 @@ body {
 
 .btn-group a{
   color: white;
-  padding: 1em 1.5em;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -142,7 +141,7 @@ body {
   background-color: black;
   border: 1px solid white;
   color: white;
-  font-size: 17px;
+  font-size: 19px;
   padding: 25px 20px;
   cursor: pointer;
   width: 50%;
