@@ -105,3 +105,35 @@ button:hover {
 .container {
   padding: 16px;
 }
+
+
+.loginbutton button {
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+  font-size: 14px;
+  padding: 13px 10px;
+  cursor: pointer;
+  width: 50%;
+  display: block;
+}
+
+
+.loginbutton button:not(:last-child) {
+  border-bottom: none;
+}
+
+
+.loginbutton button:hover {
+  background-color:#00FFFF;
+}
+
+.loginbutton button:hover a{
+  color: black;
+}
+
+.loginbutton a{
+  color: white;
+  padding: 1em 1.5em;
+  text-decoration: none;
+}
