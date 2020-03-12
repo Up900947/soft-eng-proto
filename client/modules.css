@@ -1,4 +1,3 @@
-
 html, body {
   margin: 0;
   padding: 0;
@@ -12,7 +11,7 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 58em;
+  max-width: 100%;
   padding: 0 0.62em;
 }
 
@@ -30,29 +29,8 @@ header .container {
   top: 7.5em;
 }
 
-header h1 {
-  color: #fff;
-  line-height: 1.2em;
-  font-size: 3em;
-  margin-top: 0;
-  margin-bottom: 5em;
-  text-transform: uppercase;
-}
 
 
-  .header h1 {
-    font-size:5em;
-  }
-
-
-header p {
-  color: #fff;
-  font-weight: 500;
-  letter-spacing: 0.5em;
-  margin-bottom: 2.5em;
-  margin-top: 0;
-  text-transform: uppercase;
-}
 
 
 
@@ -66,74 +44,121 @@ header p {
     }
 }
 
-.btn:hover {
-  background: #117bff;
-  cursor: pointer;
-  transition: background .5s;
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+
+
+article, h1{
+  font-size:32px;
+}
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
 }
 
-main .container {
-  margin: 5em auto;
+body {
+  font-family: "Lato", sans-serif;
 }
 
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
 }
 
-button {
-  background-color: black;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 10%;
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
 }
 
-button:hover {
-  opacity: 0.8;
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+@media only screen and (max-width: 550px) {
+  .btn-group a{font-size: 10px}
+  .btn-group button { width:100%}
 }
 
 
 
 
+.signupbtn {
+  float: left;
+  width: 50%;
+}
+
+.registerbtn {
+  width: 20%;
+  padding: 10px 25px;
+  background-color: #f44336;
+}
 .container {
   padding: 16px;
 }
 
 
-.loginbutton button {
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+.btn-group a{
+  color: white;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+
+.btn-group button {
   background-color: black;
   border: 1px solid white;
   color: white;
-  font-size: 14px;
-  padding: 13px 10px;
+  font-size: 17px;
+  padding: 25px 20px;
   cursor: pointer;
   width: 50%;
   display: block;
 }
 
 
-.loginbutton button:not(:last-child) {
+.btn-group button:not(:last-child) {
   border-bottom: none;
 }
 
 
-.loginbutton button:hover {
+.btn-group button:hover {
   background-color:#00FFFF;
 }
 
-.loginbutton button:hover a{
+.btn-group button:hover a{
   color: black;
-}
-
-.loginbutton a{
-  color: white;
-  padding: 1em 1.5em;
-  text-decoration: none;
 }
