@@ -62,6 +62,17 @@ async function uploadFile(req, res) {
   res.json(newFilename);
 }
 
+//get all files from the client side lecture notes folder
+async function getFiles(req, res) {
+  const directoryPath = path.join(_dirname, 'client', 'lectureNotes');
+  fs.readdir(directoryPath, function (err, files) {
+    if (err) {
+      console.log('Unable to scan directory' + err);
+    }
+    res.json(files);
+  });
+}
+
 //wrapper for error catching
 function asyncWrap(f) {
   return (req, res, next) => {
@@ -73,5 +84,6 @@ function asyncWrap(f) {
 app.get('/users', getUsers);
 app.post('/users', express.json(), postUser);
 app.post('/files', uploader.single('file'), express.json(), asyncWrap(uploadFile));
+app.get('/files', asyncWrap(getFiles));
 
 app.listen(8080);

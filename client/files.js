@@ -2,14 +2,14 @@
 const el = {};
 
 async function loadFiles() {
-   const response = await fetch('files');
-   let files;
-   if (response.ok) {
-     files = await response.json();
-     showFiles(files);
-   } else {
-     files = [{ msg: 'failed to load files' }];
-   }
+  const response = await fetch('files');
+  let files;
+  if (response.ok) {
+    files = await response.json();
+  } else {
+    files = [{ msg: 'failed to load files' }];
+  }
+  showFiles(files);
 }
 
 function showFiles(files) {
