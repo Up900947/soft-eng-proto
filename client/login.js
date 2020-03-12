@@ -7,7 +7,7 @@ async function loadUsers() {
    let users;
    if (response.ok) {
      users = await response.json();
-     checkUser(users)
+     checkUser(users);
    } else {
      users = [{ msg: 'failed to load users' }];
    }
