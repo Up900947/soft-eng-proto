@@ -53,12 +53,14 @@ function addUser(user) {
 //gets the file from the request and store it to server
 async function uploadFile(req, res) {
   const file = req.file;
+  const filename = req.body.filename;
+  console.log(filename);
 
   let newFilename;
   //move file to the client side
   if (file) {
     const fileExt = file.mimetype.split('/')[1] || 'pdf';
-    newFilename = file.filename + '.' + fileExt;
+    newFilename = filename + '.' + fileExt;
     await fs.renameAsync(file.path, path.join('client', 'lectureNotes', newFilename));
   }
 

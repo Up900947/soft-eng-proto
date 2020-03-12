@@ -33,6 +33,8 @@ function addLink(file) {
 
 async function uploadFile() {
   const payload = new FormData();
+  payload.append('filename', el.filename.value);
+
   if (el.file.files.length) {
     payload.append('file', el.file.files[0]);
   }
@@ -55,6 +57,7 @@ function prepareHandles() {
   el.file = document.querySelector("#file");
   el.upload = document.querySelector("#upload");
   el.content = document.querySelector("#content");
+  el.filename = document.querySelector("#file-label");
 }
 
 //Connect listeners to functions
