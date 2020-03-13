@@ -12,7 +12,7 @@ async function sendUser() {
      console.log('Payload', payload);
 
     //send data to the server
-    const response = await fetch('users', {
+    const response = await fetch('api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),

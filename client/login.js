@@ -3,7 +3,7 @@ const el = {};
 
 //get the user list from the server
 async function loadUsers() {
-   const response = await fetch('users');
+   const response = await fetch('api/users');
    let users;
    if (response.ok) {
      users = await response.json();

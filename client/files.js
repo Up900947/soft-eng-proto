@@ -2,7 +2,7 @@
 const el = {};
 
 async function loadFiles() {
-  const response = await fetch('files');
+  const response = await fetch('api/files');
   let files;
   if (response.ok) {
     files = await response.json();
@@ -33,11 +33,13 @@ function addLink(file) {
 
 async function uploadFile() {
   const payload = new FormData();
+  payload.append('filename', el.filename.value);
+
   if (el.file.files.length) {
     payload.append('file', el.file.files[0]);
   }
 
-  const response = await fetch('files', {
+  const response = await fetch('api/files', {
     method: 'POST',
     body: payload,
   });
@@ -55,6 +57,7 @@ function prepareHandles() {
   el.file = document.querySelector("#file");
   el.upload = document.querySelector("#upload");
   el.content = document.querySelector("#content");
+  el.filename = document.querySelector("#file-label");
 }
 
 //Connect listeners to functions

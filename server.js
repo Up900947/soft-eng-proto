@@ -27,9 +27,6 @@ let users = [
   { id: 'vcxbxcvfggzv', username: 'up121212', email: 'up121212@myport.ac.uk', password: '1212', course: 'Computer Science' },
 ];
 
-//array for all files stored
-let fileList = [];
-
 //send the users list
 async function getUsers(req, res) {
   res.json(users);
@@ -53,29 +50,26 @@ function addUser(user) {
 //gets the file from the request and store it to server
 async function uploadFile(req, res) {
   const file = req.file;
+  const filename = req.body.filename;
 
   let newFilename;
   //move file to the client side
   if (file) {
     const fileExt = file.mimetype.split('/')[1] || 'pdf';
-    newFilename = file.filename + '.' + fileExt;
+    newFilename = (filename || file.filename) + '.' + fileExt;
     await fs.renameAsync(file.path, path.join('client', 'lectureNotes', newFilename));
   }
-
   res.json(newFilename);
 }
 
 //get all files from the client side lecture notes folder
 async function getFiles(req, res) {
-  const directoryPath = path.join(_dirname, 'client', 'lectureNotes');
+  const directoryPath = path.join('client', 'lectureNotes');
   fs.readdir(directoryPath, function (err, files) {
     if (err) {
-      fileList = ['Unable to scan directory' + err];
+      files = ['Unable to scan directory' + err];
     }
-    files.forEach(function (file) {
-      fileList = [file, ...fileList];
-    });
-    res.json(fileList);
+    res.json(files);
   });
 }
 
@@ -87,9 +81,9 @@ function asyncWrap(f) {
   };
 }
 
-app.get('/users', getUsers);
-app.post('/users', express.json(), postUser);
-app.post('/files', uploader.single('file'), express.json(), asyncWrap(uploadFile));
-app.get('/files', asyncWrap(getFiles));
+app.get('/api/users', getUsers);
+app.post('/api/users', express.json(), postUser);
+app.post('/api/files', uploader.single('file'), express.json(), asyncWrap(uploadFile));
+app.get('/api/files', asyncWrap(getFiles));
 
 app.listen(8080);
