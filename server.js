@@ -81,9 +81,9 @@ function asyncWrap(f) {
   };
 }
 
-app.get('/users', getUsers);
-app.post('/users', express.json(), postUser);
-app.post('/files', uploader.single('file'), express.json(), asyncWrap(uploadFile));
-app.get('/files', asyncWrap(getFiles));
+app.get('/api/users', getUsers);
+app.post('/api/users', express.json(), postUser);
+app.post('/api/files', uploader.single('file'), express.json(), asyncWrap(uploadFile));
+app.get('/api/files', asyncWrap(getFiles));
 
 app.listen(8080);

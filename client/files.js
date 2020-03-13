@@ -2,7 +2,7 @@
 const el = {};
 
 async function loadFiles() {
-  const response = await fetch('files');
+  const response = await fetch('api/files');
   let files;
   if (response.ok) {
     files = await response.json();
@@ -39,7 +39,7 @@ async function uploadFile() {
     payload.append('file', el.file.files[0]);
   }
 
-  const response = await fetch('files', {
+  const response = await fetch('api/files', {
     method: 'POST',
     body: payload,
   });
