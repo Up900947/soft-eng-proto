@@ -27,9 +27,6 @@ let users = [
   { id: 'vcxbxcvfggzv', username: 'up121212', email: 'up121212@myport.ac.uk', password: '1212', course: 'Computer Science' },
 ];
 
-//array for all files stored
-let fileList = [];
-
 //send the users list
 async function getUsers(req, res) {
   res.json(users);
