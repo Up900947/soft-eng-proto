@@ -59,7 +59,7 @@ async function uploadFile(req, res) {
   //move file to the client side
   if (file) {
     const fileExt = file.mimetype.split('/')[1] || 'pdf';
-    newFilename = filename + '.' + fileExt;
+    newFilename = (filename || file.filename) + '.' + fileExt;
     await fs.renameAsync(file.path, path.join('client', 'lectureNotes', newFilename));
   }
 
