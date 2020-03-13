@@ -64,7 +64,7 @@ async function uploadFile(req, res) {
 
 //get all files from the client side lecture notes folder
 async function getFiles(req, res) {
-  const directoryPath = path.join(_dirname, 'client', 'lectureNotes');
+  const directoryPath = path.join('client', 'lectureNotes');
   fs.readdir(directoryPath, function (err, files) {
     if (err) {
       files = ['Unable to scan directory' + err];
