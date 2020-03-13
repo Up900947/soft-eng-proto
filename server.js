@@ -59,7 +59,6 @@ async function uploadFile(req, res) {
     newFilename = (filename || file.filename) + '.' + fileExt;
     await fs.renameAsync(file.path, path.join('client', 'lectureNotes', newFilename));
   }
-
   res.json(newFilename);
 }
 
@@ -68,12 +67,9 @@ async function getFiles(req, res) {
   const directoryPath = path.join(_dirname, 'client', 'lectureNotes');
   fs.readdir(directoryPath, function (err, files) {
     if (err) {
-      fileList = ['Unable to scan directory' + err];
+      files = ['Unable to scan directory' + err];
     }
-    files.forEach(function (file) {
-      fileList = [file, ...fileList];
-    });
-    res.json(fileList);
+    res.json(files);
   });
 }
 
