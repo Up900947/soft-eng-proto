@@ -4,15 +4,27 @@ QUnit.test(
   function (assert) {
 
     assert.ok(
-      typeof showMessage === "function",
+      typeof checkUser === "function",
       "Create a `checkUser` function."
     );
 
-    assert.equal(
-      checkUser("up121212");
-      checkUser("up111111");
-      checkUser("up123456");
-    );
+    checkUser("up121212");
+
+    const done = assert.async(1);
+    assert.expect(2);
+
+    setTimeout(checkUser2, 500);
+    setTimeout(checkUser3, 1000);
+
+    function checkUser2() {
+      assert.ok(checkUser("up111111"));
+    };
+
+    function checkUser3() {
+      assert.ok(checkUser("up123456"));
+    };
+
+    done();
   }
 
 
