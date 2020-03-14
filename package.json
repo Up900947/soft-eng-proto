@@ -4,7 +4,7 @@
   "description": "software engineering coursework",
   "main": "server.js",
   "scripts": {
-    "test": "test.js",
+    "test": "test/test.js",
     "start": "node server.js"
   },
   "repository": {
