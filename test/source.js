@@ -32,3 +32,17 @@ function checkPasswords(password, repeatPassword) {
         return false;
     }
 }
+
+function sendUser(elm, username, email, psw, course) {
+    //create payload from userdetails
+    const payload = {
+      username: username,
+      email: email,
+      password: psw,
+      course: course,
+     };
+
+    const li = document.createElement("li");
+    li.textContent = username;
+    elm.append(li);
+}

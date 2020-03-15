@@ -102,3 +102,34 @@ QUnit.test(
     );
   }
 )
+//sendUser test
+QUnit.test(
+  "Test the register page: checks if function sendUser successfully sends and receive user details",
+
+  function (assert) {
+    assert.ok(
+      typeof sendUser === "function",
+      "Create a `sendUser` function."
+    );
+
+    // registered/valid values
+    sendUser(window.users, "up232323", "up232323@myport.ac.uk", "2323", "Computer Science");
+    assert.equal(
+      window.users.children.length,
+      1,
+      "Add up232323 value to list"
+    );
+    sendUser(window.users, "up343434", "up343434@myport.ac.uk", "3434", "Business Information System");
+    assert.equal(
+      window.users.children.length,
+      2,
+      "Add up343434 value to list"
+    );
+    sendUser(window.users, "up454545", "up454545@myport.ac.uk", "454545", "Computing");
+    assert.equal(
+      window.users.children.length,
+      3,
+      "Add up454545 value to list"
+    );
+  }
+)
