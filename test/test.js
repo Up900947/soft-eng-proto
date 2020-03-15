@@ -1,15 +1,4 @@
-function checkUser(users, test_username) {
-  const username = test_username;
-  let found = false;
 
-  for (const user of users) {
-    if (user === username) {
-      found = true;
-    }
-  }
-
-  return found;
-}
 QUnit.test(
   "Test the login page: checks if username is registered",
 
