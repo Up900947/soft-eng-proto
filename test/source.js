@@ -46,3 +46,18 @@ function sendUser(elm, username, email, psw, course) {
     li.textContent = username;
     elm.append(li);
 }
+
+//Files tests functions ---------------------------------------------
+//check uploadFile function
+function uploadFile(elm, filename, file) {
+  const payload = new FormData();
+  payload.append('filename', filename);
+
+  if (file.length) {
+    payload.append('file', file);
+  }
+
+  const li = document.createElement("li");
+  li.textContent = filename;
+  elm.append(li);
+}

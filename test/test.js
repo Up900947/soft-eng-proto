@@ -133,3 +133,30 @@ QUnit.test(
     );
   }
 )
+
+QUnit.module("Files tests");
+//uploadFile test
+QUnit.test(
+  "Test the files page: checks if file is uploaded",
+
+  function (assert) {
+    assert.ok(
+      typeof uploadFile === "function",
+      "Create a `uploadFile` function."
+    );
+
+    // registered/valid values
+    sendUser(window.files, "sample.pdf", );
+    assert.equal(
+      window.files.children.length,
+      1,
+      "Add sample.pdf value to list"
+    );
+    sendUser(window.files, "new file.pdf", );
+    assert.equal(
+      window.files.children.length,
+      2,
+      "Add new file.pdf value to list"
+    );
+  }
+)
