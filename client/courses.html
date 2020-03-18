@@ -4,7 +4,11 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href="courses.css" type="text/css" rel="stylesheet">
       <script src="register.js"></script>
-      <title>Courses page </title>
+
+    <title>Courses page </title>
+
+    <title>Courses page</title>
+
   </head>
 
 
@@ -16,6 +20,7 @@
 
   <div class="container">
     <div id="mySidenav" class="sidenav">
+        <ul>
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="courses.html">Courses</a>
   <a href="video.html">Account</a>
@@ -41,11 +46,32 @@
     <h1> Courses </h1>
     <hr>
     <div class="btn-group">
-  <a target="_blank" href= business-information-systems.html><button type="button">Business information Systems</button></a>
-  <a target="_blank" href= computer-science.html><button type="button">Computer Science</button></a>
-  <a target="_blank" href= computing.html><button type="button">Computing</button></a>
-  <a target="_blank" href= cyber.html><button type="button">Cyber</button></a>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for course names.." title="Type in a name">
+
+        <ul id="myUL">
+            <li><a target="_blank" href= business-information-systems.html><button type="button">Business information Systems</button></a></li>
+                <li><a target="_blank" href= computer-science.html><button type="button">Computer Science</button></a></li>
+                    <li><a target="_blank" href= computing.html><button type="button">Computing</button></a></li>
+                        <li><a target="_blank" href= cyber.html><button type="button">Cyber Security</button></a></li>
 </div>
 
+    <script>
+        function myFunction() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+</script>
 
   </article>
