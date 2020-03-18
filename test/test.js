@@ -160,3 +160,79 @@ QUnit.test(
     );
   }
 )
+
+QUnit.module("Search feature test");
+QUnit.test(
+  "Testing search feature in course page",
+
+  function(assert) {
+    assert.ok(
+      typeof searchFunction === "function",
+      "Create a `searchFunction` function."
+    );
+
+    //what the user is searching
+    const elm_ul = window.courses;
+    const elm_li = elm_ul.children;
+    const elm_found = window.found;
+
+    //testing valid inputs
+    let input = "computer science";
+    searchFunction(input, elm_ul, elm_li, elm_found);
+    assert.equal(
+      window.found.children.length,
+      1,
+      "Searching computer science (Expected: Computer Science)"
+    );
+
+    //remove all elements of found
+    removeElements(elm_found);
+
+    input = "c"
+    searchFunction(input, elm_ul, elm_li, elm_found);
+    assert.equal(
+      window.found.children.length,
+      3,
+      "Searching 'c' (Expected: Computer Science, Computing, Cyber Security)"
+    );
+
+    //remove all elements of found
+    removeElements(elm_found);
+
+    input = "b"
+    searchFunction(input, elm_ul, elm_li, elm_found);
+    assert.equal(
+      window.found.children.length,
+      2,
+      "Searching 'b' (Expected: Business Information Systems, Cyber Security)"
+    );
+
+    //remove all elements of found
+    removeElements(elm_found);
+
+    //testing invalid inputs
+    input = "d"
+    searchFunction(input, elm_ul, elm_li, elm_found);
+    assert.equal(
+      window.found.children.length,
+      0,
+      "Searching 'd' (Expected: none)"
+    );
+
+    input = "!%%£$"
+    searchFunction(input, elm_ul, elm_li, elm_found);
+    assert.equal(
+      window.found.children.length,
+      0,
+      "Searching '!%%£$' (Expected: none)"
+    );
+
+    input = "123456"
+    searchFunction(input, elm_ul, elm_li, elm_found);
+    assert.equal(
+      window.found.children.length,
+      0,
+      "Searching '123456' (Expected: none)"
+    );
+  }
+)

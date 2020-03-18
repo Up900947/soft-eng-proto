@@ -61,3 +61,31 @@ function uploadFile(elm, filename, file) {
   li.textContent = filename;
   elm.append(li);
 }
+
+//Search bar tests functions ---------------------------------------------
+//check search function
+function searchFunction(test_input, elm_ul, elm_li, elm_found) {
+  const filter = test_input.toUpperCase();
+  let a;
+  let i;
+  let txtValue;
+
+  for (i = 0; i < elm_li.length; i++) {
+      a = elm_li[i].getElementsByTagName("a")[0];
+      txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      const li = document.createElement("li");
+      li.textContent = txtValue;
+      elm_found.append(li);
+    } else {
+      //none
+    }
+  }
+}
+
+//helper function to delete all elements of ul found
+function removeElements(elm) {
+  while (elm.hasChildNodes()) {
+    elm.removeChild(elm.firstChild);
+  }
+}
