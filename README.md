@@ -1,4 +1,4 @@
-# soft-eng-proto
+# soft-eng-proto [![Build Status](https://travis-ci.com/allyssapascual/soft-eng-proto.svg?branch=master)](https://travis-ci.com/allyssapascual/soft-eng-proto)
 
 [![Build Status](https://travis-ci.com/allyssapascual/soft-eng-proto.svg?branch=master)](https://travis-ci.com/allyssapascual/soft-eng-proto)
 
