@@ -1,0 +1,62 @@
+<html>
+  <head lang="en" dir="ltr">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="newfiles.css" type="text/css" rel="stylesheet">
+      <script src="newfiles.js"></script>
+    <title> Files </title>
+  </head>
+
+  <header>
+    <div class="container">
+
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="courses.html">Courses</a>
+  <a href="video.html">Account</a>
+  <a href="https://myport.ac.uk/">Moodle</a>
+  </div>
+
+  <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+  </script>
+
+
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; MENU</span>
+
+<main>
+
+  <h1> Files </h1>
+
+  <article id = 'upload-files'>
+    <input id = "file" type = "file" accept=".pdf">
+    <input id = "upload" type = "submit" value = "Upload">
+  </article>
+  <br>
+
+  <h1> Buisness Information Systems - Basics of The Business Environment </h1>
+
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for files..">
+  <div class="dropdown">
+    <button class="dropbtn">Sort By</button>
+    <div class="dropdown-content">
+      <a href="#">Alphabetically</a>
+      <a href="#">Date Added</a>
+    </div>
+  </div>
+
+  <ul id="myUL">
+    <li class = "files"><a href = "#">Basics - Lecture Week 1 - Date</a></li>
+    <li class = "files"><a href = "#">Basics - Lecture Week 2 - Date</a></li>
+    <li class = "files"><a href = "#">Basics - Lecture Week 3 - Date</a></li>
+  </ul>
