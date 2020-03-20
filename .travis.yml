@@ -1,0 +1,12 @@
+language: node_js
+
+os: windows
+
+node_js:
+  - node
+
+install:
+  - npm ci
+
+script:
+  - npm test

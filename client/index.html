@@ -1,22 +1,46 @@
 <!DOCTYPE html>
-<html lang = 'en'>
-<meta charset="utf-8">
-<link rel="stylesheet" media="screen and (min-width: 600px)" href="stysheet.css">
-<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)"href="phonestysheet.css">
+<html>
+  <head lang="en" dir="ltr">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="login.css" type="text/css" rel="stylesheet">
+      <script src="login.js"></script>
+      <title>Login Page </title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
 
-<title>PortHub</title>
-<header>
-  <img src="portHubLogo.png" alt="logo">
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a>
-      <li><a href="courses.html">Courses</a>
-      <li><a href="video.html">Account</a>
-      <li><a href="https:https://myport.ac.uk/">Moodle</a>
-    </ul>
-  </nav>
-</header>
+      </div>
+    </header>
 
-<main>
 
-</main>
+    <main>
+
+<!-- <form action="/action_page.php" method="post"> -->
+  <div class="imgcontainer">
+  </div>
+
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input id="username" type="text" placeholder="Enter Username" name="uname" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input id="psw" type="password" placeholder="Enter Password" name="psw" required>
+    <div class="loginbutton">
+    <button id="login" type="submit">Login</button>
+    <a href= register.html><button type="button" class="registerbtn">Register</button></a>
+    </div>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+<!-- </form> -->
+    </main>
+
+  </body>
+</html>

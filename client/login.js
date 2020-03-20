@@ -3,11 +3,11 @@ const el = {};
 
 //get the user list from the server
 async function loadUsers() {
-   const response = await fetch('users');
+   const response = await fetch('api/users');
    let users;
    if (response.ok) {
      users = await response.json();
-     checkUser(users)
+     checkUser(users);
    } else {
      users = [{ msg: 'failed to load users' }];
    }
@@ -39,7 +39,7 @@ function checkPassword(user) {
 
     if (user.password === password) {
       //redirect to homepage
-      window.location.href = '/index.html';
+      window.location.href = '/courses.html';
     } else {
       console.log('Password incorrect');
       confirm("Password incorrect");

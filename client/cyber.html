@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+
+
+<html>
+  <head lang="en" dir="ltr">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="modules.css" type="text/css" rel="stylesheet">
+      <script src="register.js"></script>
+    <title>Module page </title>
+  </head>
+
+
+  <header>
+    <div class="container">
+
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="courses.html">Courses</a>
+  <a href="video.html">Account</a>
+  <a href="https://myport.ac.uk/">Moodle</a>
+  </div>
+
+  <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+  </script>
+
+
+
+
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; MENU</span>
+
+  <article id = "courses">
+    <h1> Cyber Security and Forensic Computing </h1>
+    <hr>
+    <div class="btn-group">
+  <a href = "architecture-and-operating-systems.html"><button>Architecture and Operating Systems</button></a>
+  <a href = "cyber-security-and-forensic-computing.html"><button>Cyber Security and Forensic Computing</button></a>
+  <a href = "core-computing-concepts.html"><button>Core Computing Concepts</button></a>
+  <a href = "networks.html"><button>Networks</button></a>
+</div>
+
+  </article>
