@@ -51,20 +51,26 @@ function addUser(user) {
 async function uploadFile(req, res) {
   const file = req.file;
   const filename = req.body.filename;
+  const courseID = req.body.course;
+  const moduleID = req.body.module;
 
   let newFilename;
-  //move file to the client side
+  //move file to the appropriate folder in client side
   if (file) {
     const fileExt = file.mimetype.split('/')[1] || 'pdf';
     newFilename = (filename || file.filename) + '.' + fileExt;
-    await fs.renameAsync(file.path, path.join('client', 'lectureNotes', newFilename));
+    await fs.renameAsync(file.path, path.join('client', courseID, moduleID, newFilename));
   }
   res.json(newFilename);
 }
 
-//get all files from the client side lecture notes folder
+//get all files from the client side courses folder lecture notes folder
 async function getFiles(req, res) {
-  const directoryPath = path.join('client', 'lectureNotes');
+  const courseID = req.params.id.split(',')[0];
+  const moduleID = req.params.id.split(',')[1];
+
+  const directoryPath = path.join('client', courseID, moduleID);
+
   fs.readdir(directoryPath, function (err, files) {
     if (err) {
       files = ['Unable to scan directory' + err];
@@ -84,6 +90,6 @@ function asyncWrap(f) {
 app.get('/api/users', getUsers);
 app.post('/api/users', express.json(), postUser);
 app.post('/api/files', uploader.single('file'), express.json(), asyncWrap(uploadFile));
-app.get('/api/files', asyncWrap(getFiles));
+app.get('/api/files:id', asyncWrap(getFiles));
 
 app.listen(8080);

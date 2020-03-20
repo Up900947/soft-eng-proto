@@ -4,6 +4,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href="/newfiles.css" type="text/css" rel="stylesheet">
       <script src="/newfiles.js"></script>
+      <script type="text/javascript" src="/files.js"></script>
     <title> Files </title>
   </head>
 
@@ -16,7 +17,7 @@
   <div class="container">
     <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="courses.html">Courses</a>
+  <a href="/courses.html">Courses</a>
   <a href="video.html">Account</a>
   <a href="https://myport.ac.uk/">Moodle</a>
   </div>
@@ -39,6 +40,11 @@
   <h1> Files </h1>
 
   <article id = 'upload-files'>
+    <h6 id = "courseID" hidden>bis</h6>
+    <h6 id = "moduleID" hidden>ccLectureNotes</h6>
+    <label id = "label"> Filename:
+      <input id = "file-label" type = "text">
+    </label>
     <input id = "file" type = "file" accept=".pdf">
     <input id = "upload" type = "submit" value = "Upload">
   </article>
@@ -56,7 +62,4 @@
   </div>
 
   <ul id="myUL">
-    <li class = "files"><a href = "#">Core Computing - Lecture Week 1 - Date</a></li>
-    <li class = "files"><a href = "#">Core Computing - Lecture Week 2 - Date</a></li>
-    <li class = "files"><a href = "#">Core Computing - Lecture Week 3 - Date</a></li>
   </ul>

@@ -2,7 +2,8 @@
 const el = {};
 
 async function loadFiles() {
-  const response = await fetch('api/files');
+  const id = el.courseID.textContent + "," + el.moduleID.textContent;
+  const response = await fetch('/api/files' + id);
   let files;
   if (response.ok) {
     files = await response.json();
@@ -34,12 +35,14 @@ function addLink(file) {
 async function uploadFile() {
   const payload = new FormData();
   payload.append('filename', el.filename.value);
+  payload.append('course', el.courseID.textContent);
+  payload.append('module', el.moduleID.textContent);
 
   if (el.file.files.length) {
     payload.append('file', el.file.files[0]);
   }
 
-  const response = await fetch('api/files', {
+  const response = await fetch('/api/files', {
     method: 'POST',
     body: payload,
   });
@@ -56,8 +59,10 @@ async function uploadFile() {
 function prepareHandles() {
   el.file = document.querySelector("#file");
   el.upload = document.querySelector("#upload");
-  el.content = document.querySelector("#content");
+  el.content = document.querySelector("#myUL");
   el.filename = document.querySelector("#file-label");
+  el.courseID = document.querySelector("#courseID");
+  el.moduleID = document.querySelector("#moduleID");
 }
 
 //Connect listeners to functions
