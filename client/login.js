@@ -19,8 +19,7 @@ function checkUser(users) {
   const found = false;
 
   for (const user of users) {
-    if (user.username === username) {
-      console.log(user.username);
+    if (user.user.username === username) {
       checkPassword(user);
       found = true;
     }
@@ -37,7 +36,7 @@ function checkUser(users) {
 function checkPassword(user) {
     const password = el.psw.value;
 
-    if (user.password === password) {
+    if (user.user.password === password) {
       //redirect to homepage
       window.location.href = '/courses.html';
     } else {
