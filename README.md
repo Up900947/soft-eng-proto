@@ -1,7 +1,7 @@
 # soft-eng-proto [![Build Status](https://travis-ci.com/allyssapascual/soft-eng-proto.svg?branch=master)](https://travis-ci.com/allyssapascual/soft-eng-proto)
 
 Documentation
-https://allyssapascual.github.io/
+[GitHub pages] (https://allyssapascual.github.io/)
 
 How to install:
 ```
