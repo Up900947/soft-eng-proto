@@ -24,24 +24,57 @@ const GoogleAuth = require('simple-google-openid');
 app.use(GoogleAuth(process.env.GOOGLE_CLIENT_ID));
 app.use('/api', GoogleAuth.guardMiddleware());
 
-//dummy accounts
+
+/**
+* dummy accounts - used for testing
+* @since 18/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+*/
 let users = [
   { id: 'xnshfdsafasd', username: 'up123456', email: 'up123456@myport.ac.uk', password: '123', course: 'Data Science and Analytics' },
   { id: 'dskjdshkjhsd', username: 'up111111', email: 'up111111@myport.ac.uk', password: '111', course: 'Mechanical Engineering' },
   { id: 'vcxbxcvfggzv', username: 'up121212', email: 'up121212@myport.ac.uk', password: '1212', course: 'Computer Science' },
 ];
 
-//send the users list
+
+/**
+* sends the users list
+* @async
+* @function
+* @since 18/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @param {string} [req]
+* @param {string} [res]
+* @returns {users}
+*/
 async function getUsers(req, res) {
   res.json(users);
 }
 
-//add new user account in the server lists
+
+/**
+* call to add new user account in the server lists
+* @async
+* @function
+* @since 18/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @param {string} [req]
+* @param {string} [res]
+* @returns {users}
+*/
 async function postUser(req, res) {
   const users = addUser(req.body);
   res.json(users);
 }
 
+/**
+* add new user account in the server lists
+* @function
+* @since 18/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @param {string} [users]
+* @returns {users}
+*/
 function addUser(user) {
   const newUser = {
     id: uuid(),
@@ -51,7 +84,16 @@ function addUser(user) {
   return users;
 }
 
-//gets the file from the request and store it to server
+/**
+* gets the file from the request and store it to server and move file to the appropriate folder in client side
+* @async
+* @function
+* @since 18/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @param {string} [req]
+* @param {string} [res]
+* @returns folder in appropriate folder
+*/
 async function uploadFile(req, res) {
   const file = req.file;
   const filename = req.body.filename;
@@ -59,7 +101,7 @@ async function uploadFile(req, res) {
   const moduleID = req.body.module;
 
   let newFilename;
-  //move file to the appropriate folder in client side
+
   if (file) {
     const fileExt = file.mimetype.split('/')[1] || 'pdf';
     newFilename = (filename || file.filename) + '.' + fileExt;
@@ -68,7 +110,17 @@ async function uploadFile(req, res) {
   res.json(newFilename);
 }
 
-//get all files from the client side courses folder lecture notes folder
+/**
+* get all files from the client side courses folder lecture notes folder
+* @async
+* @function
+* @since 18/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @param {string} [req]
+* @param {string} [res]
+* @returns Gets all folders/files
+* @throws if statement msg - 'Unable to scan directory'
+*/
 async function getFiles(req, res) {
   const courseID = req.params.id.split(',')[0];
   const moduleID = req.params.id.split(',')[1];
@@ -83,7 +135,13 @@ async function getFiles(req, res) {
   });
 }
 
-//wrapper for error catching
+/**
+* wrapper for error catching
+* @function
+* @since 18/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @param {string} [f]
+*/
 function asyncWrap(f) {
   return (req, res, next) => {
     Promise.resolve(f(req, res, next))
