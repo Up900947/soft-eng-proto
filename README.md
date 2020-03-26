@@ -1,5 +1,8 @@
 # soft-eng-proto [![Build Status](https://travis-ci.com/allyssapascual/soft-eng-proto.svg?branch=master)](https://travis-ci.com/allyssapascual/soft-eng-proto)
 
+Documentation
+https://allyssapascual.github.io/
+
 How to install:
 ```
 git clone https://github.com/Up900947/soft-eng-proto  
