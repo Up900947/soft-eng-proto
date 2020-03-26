@@ -86,6 +86,12 @@ function asyncWrap(f) {
       .catch((e) => next(e || new Error()));
   };
 }
+// set up view engineering
+app.set('view engine','ejs');
+//creater home route
+app.get('/',(req,res)=> {
+  res.render('index');
+});
 
 app.get('/api/users', getUsers);
 app.post('/api/users', express.json(), postUser);
