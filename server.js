@@ -1,4 +1,5 @@
 'use strict';
+//GOOGLE_CLIENT_ID=566799652531-7u10ps3a638tbj4q1dtb6lufiolpfkoo.apps.googleusercontent.com node server.js
 const uuid = require('uuid-random');
 const express = require('express');
 const multer = require('multer');
@@ -19,6 +20,10 @@ const uploader = multer({
 fs.renameAsync = fs.renameAsync || util.promisify(fs.rename);
 
 app.use(express.static('client', { extensions: ['html'] }));
+
+const GoogleAuth = require('simple-google-openid');
+app.use(GoogleAuth(process.env.GOOGLE_CLIENT_ID));
+app.use('/api', GoogleAuth.guardMiddleware());
 
 //dummy accounts
 let users = [
@@ -91,5 +96,12 @@ app.get('/api/users', getUsers);
 app.post('/api/users', express.json(), postUser);
 app.post('/api/files', uploader.single('file'), express.json(), asyncWrap(uploadFile));
 app.get('/api/files:id', asyncWrap(getFiles));
+app.get('/api/hello', (req, res) => {
+  res.send('Hello ' + (req.user.displayName || 'user without a name') + '!');
+  console.log('successful authenticated request by ' + req.user.emails[0].value);
+});
 
-app.listen(8080);
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}!`);
+});
