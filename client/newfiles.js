@@ -1,3 +1,5 @@
+'use strict';
+
 /**
 * Enables new files to be added, placed into array
 * @function
@@ -6,7 +8,6 @@
 * @returns file uploaded
 * @throws incorrect file type/size
 */
-<script>
 function myFunction() {
   var input, filter, ul, li, a, i, txtValue;
   input = document.getElementById('myInput');
@@ -24,4 +25,3 @@ function myFunction() {
     }
   }
 }
-</script>

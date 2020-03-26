@@ -1,5 +1,4 @@
 'use strict';
-//GOOGLE_CLIENT_ID=566799652531-7u10ps3a638tbj4q1dtb6lufiolpfkoo.apps.googleusercontent.com node server.js
 const uuid = require('uuid-random');
 const express = require('express');
 const multer = require('multer');
