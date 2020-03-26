@@ -11,7 +11,6 @@ const el = {};
 * @function
 * @since 20/03/2020
 * @author up899210,up948053,up904277,up916282,Up900947,up849725
-* @param {object[]} el - list of users
 * @returns {users}
 * @throws else statement msg - 'failed to load users'
 */
@@ -34,7 +33,6 @@ async function loadUsers() {
 * @since 20/03/2020
 * @author up899210,up948053,up904277,up916282,Up900947,up849725
 * @param {string} [users] - users name
-* @param {boolean} found
 * @returns {users}
 * @throws if statement msg - 'User is not registered'
 */
@@ -62,7 +60,7 @@ function checkUser(users) {
 * @function
 * @since 20/03/2020
 * @author up899210,up948053,up904277,up916282,Up900947,up849725
-* @param {string} [password] - password from list
+* @param {string} [user]
 * @returns redirect user to homepage
 * @throws else statement msg - 'Password incorrect'
 */
@@ -86,9 +84,6 @@ function checkPassword(user) {
 * @function
 * @since 20/03/2020
 * @author up899210,up948053,up904277,up916282,Up900947,up849725
-* @param {object[]} el - list
-* @param {object[]} el.username - list of usernames
-* @param {object[]} el.psw - list of passwords
 * @returns checks the coresponding list
 * @throws entity is not found
 */
@@ -104,7 +99,6 @@ function prepareHandles() {
 * @function
 * @since 20/03/2020
 * @author up899210,up948053,up904277,up916282,Up900947,up849725
-* @param {object[]} el.login - listener for login
 * @returns checks the coresponding list
 * @throws entity is not found
 */
@@ -117,7 +111,6 @@ function addEventListeners() {
 * @function
 * @since 20/03/2020
 * @author up899210,up948053,up904277,up916282,Up900947,up849725
-* @param pageLoaded loads page and listeners
 * @returns loaded page and listeners
 * @throws page and lister not loaded
 */
