@@ -95,7 +95,7 @@ function prepareHandles() {
 
 
 /**
-* Connect listeners to functions
+* Connect listener of login to functions
 * @function
 * @since 20/03/2020
 * @author up899210,up948053,up904277,up916282,Up900947,up849725
