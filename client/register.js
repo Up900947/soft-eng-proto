@@ -1,4 +1,8 @@
 'use strict';
+/**
+* Object consists of handlers
+* @type {Object}
+*/
 const el = {};
 
 
