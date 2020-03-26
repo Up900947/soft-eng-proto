@@ -26,6 +26,8 @@ async function loadUsers() {
    }
 }
 
+
+
 /**
 * check if the user is registered (in the list)
 * @function
@@ -55,8 +57,6 @@ function checkUser(users) {
 
 
 
-
-
 /**
 * check if the password is correct
 * @function
@@ -78,18 +78,49 @@ function checkPassword(user) {
     }
 }
 
-//Set up an array of elements found in the DOM
+
+
+
+/**
+* Set up an array of elements found in the DOM
+* @function
+* @since 20/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @param {object[]} el - list
+* @param {object[]} el.username - list of usernames
+* @param {object[]} el.psw - list of passwords
+* @returns checks the coresponding list
+* @throws entity is not found
+*/
 function prepareHandles() {
   el.username = document.querySelector("#username");
   el.psw = document.querySelector("#psw")
   el.login = document.querySelector("#login")
 }
 
-//Connect listeners to functions
+
+/**
+* Connect listeners to functions
+* @function
+* @since 20/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @param {object[]} el.login - listener for login
+* @returns checks the coresponding list
+* @throws entity is not found
+*/
 function addEventListeners() {
   el.login.addEventListener('click', loadUsers);
 }
 
+/**
+* Connect listeners to functions
+* @function
+* @since 20/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @param pageLoaded loads page and listeners
+* @returns loaded page and listeners
+* @throws page and lister not loaded
+*/
 function pageLoaded() {
   prepareHandles();
   addEventListeners();
