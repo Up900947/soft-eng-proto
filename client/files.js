@@ -1,6 +1,16 @@
 'use strict';
 const el = {};
 
+
+/**
+* Retrieves the user list from the server
+* @async
+* @function
+* @since 20/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @returns load and shows files
+* @throws else statement msg - 'failed to load files'
+*/
 async function loadFiles() {
   const id = el.courseID.textContent + "," + el.moduleID.textContent;
   const response = await fetch('/api/files' + id);
@@ -13,12 +23,28 @@ async function loadFiles() {
   showFiles(files);
 }
 
+/**
+* A call to show and create link for each file
+* @function
+* @since 20/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @param {FILE} [files] - users name
+* @returns linked files
+*/
 function showFiles(files) {
   for (const file of files) {
     addLink(file);
   }
 }
 
+/**
+* creates link for each file
+* @function
+* @since 20/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @param {FILE} [files] - users name
+* @returns linked files
+*/
 function addLink(file) {
   const li = document.createElement('li');
   li.classList.add('files');
@@ -32,6 +58,15 @@ function addLink(file) {
   el.content.append(li);
 }
 
+/**
+* creates the payload to upload for each file
+* @async
+* @function
+* @since 20/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @returns uploaded file confirmation
+* @throws else statement msg - 'failed to send file'
+*/
 async function uploadFile() {
   const payload = new FormData();
   payload.append('filename', el.filename.value);
@@ -55,7 +90,15 @@ async function uploadFile() {
   }
 }
 
-//Set up an array of elements found in the DOM
+
+/**
+* Set up an array of elements found in the DOM
+* @function
+* @since 20/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @returns checks the coresponding list
+* @throws entity is not found
+*/
 function prepareHandles() {
   el.file = document.querySelector("#file");
   el.upload = document.querySelector("#upload");
@@ -65,11 +108,26 @@ function prepareHandles() {
   el.moduleID = document.querySelector("#moduleID");
 }
 
-//Connect listeners to functions
+/**
+* Connect listener of upload to functions
+* @function
+* @since 20/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @returns checks the coresponding list
+* @throws entity is not found
+*/
 function addEventListeners() {
   el.upload.addEventListener('click', uploadFile);
 }
 
+/**
+* Connect listeners to functions
+* @function
+* @since 20/03/2020
+* @author up899210,up948053,up904277,up916282,Up900947,up849725
+* @returns loaded page and listeners
+* @throws page and lister not loaded
+*/
 function pageLoaded() {
   prepareHandles();
   addEventListeners();
