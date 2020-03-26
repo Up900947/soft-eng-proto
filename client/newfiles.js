@@ -1,5 +1,4 @@
-
-<script>
+'use strict';
 function myFunction() {
   var input, filter, ul, li, a, i, txtValue;
   input = document.getElementById('myInput');
@@ -17,4 +16,3 @@ function myFunction() {
     }
   }
 }
-</script>

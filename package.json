@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "test/test.js",
-    "start": "node server.js"
+    "doc": "jsdoc -c jsdoc-config.json"
   },
   "repository": {
     "type": "git",
