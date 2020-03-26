@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en" dir="ltr">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="login.css" type="text/css" rel="stylesheet">
+      <script src="login.js"></script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+      <meta name="google-signin-client_id" content="1034675956683-me5gk4gsf0bmv5vrvglraefop5f8ojuu.apps.googleusercontent.com">
+      <title>Login Page </title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+
+      </div>
+    </header>
+
+
+    <main>
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <script>
+      function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        window.location.href = '/courses.html';
+      }
+
+      async function callServer() {
+        const token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+
+        const el = document.getElementById('server-response');
+        el.textContent = 'loading…';
+
+        const fetchOptions = {
+          credentials: 'same-origin',
+          method: 'GET',
+          headers: { 'Authorization': 'Bearer ' + token },
+        };
+        const response = await fetch('/api/hello', fetchOptions);
+        if (!response.ok) {
+          // handle the error
+          el.textContent = "Server error:\n" + response.status;
+          return;
+        }
+
+        // handle the response
+        const data = await response.text();
+      }
+    </script>
+    </main>
+
+  </body>
+</html>
