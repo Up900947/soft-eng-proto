@@ -18,7 +18,7 @@
 
 
     <main>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-width="500" data-height="75"></div>
     <script>
       function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
@@ -47,6 +47,8 @@
         const data = await response.text();
       }
     </script>
+
+    <a href="https://accounts.google.com/signup"><button type="button" name="register" id = "regbtn">Register</button></a>
     </main>
 
   </body>

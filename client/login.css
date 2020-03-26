@@ -139,3 +139,17 @@ button .registerbtn{
   color: white;
   text-decoration: none;
 }
+
+.g-signin2 {
+  margin-top: 80px;
+  position: absolute;
+  left: 30%;
+}
+
+#regbtn {
+  margin-top: 200px;
+  position: absolute;
+  left: 30%;
+  width: 500px;
+  height: 75px;
+}
