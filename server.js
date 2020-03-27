@@ -21,7 +21,7 @@ fs.renameAsync = fs.renameAsync || util.promisify(fs.rename);
 app.use(express.static('client', { extensions: ['html'] }));
 
 const GoogleAuth = require('simple-google-openid');
-app.use(GoogleAuth(process.env.GOOGLE_CLIENT_ID));
+app.use(GoogleAuth('GOOGLE_CLIENT_ID=566799652531-7u10ps3a638tbj4q1dtb6lufiolpfkoo.apps.googleusercontent.com node server.js'  ));
 // app.use('/api', GoogleAuth.guardMiddleware());
 
 
