@@ -22,7 +22,7 @@ app.use(express.static('client', { extensions: ['html'] }));
 
 const GoogleAuth = require('simple-google-openid');
 app.use(GoogleAuth(process.env.GOOGLE_CLIENT_ID));
-app.use('/api', GoogleAuth.guardMiddleware());
+// app.use('/api', GoogleAuth.guardMiddleware());
 
 
 /**
