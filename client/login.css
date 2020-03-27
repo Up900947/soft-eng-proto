@@ -30,6 +30,22 @@ header .container {
   top: 7.5em;
 }
 
+.overview h1{
+  font-family: cursive;
+  font-size: 41px;
+  font-variant: small-caps;
+  font-weight: 700;
+  line-height: 31px;
+}
+.overview p{
+  font-family: cursive;
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
+
 header h1 {
   color: #fff;
   line-height: 1.2em;
